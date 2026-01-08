@@ -1,42 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>Snake Game</title>
-<link rel="stylesheet" href="style.css" />
-<style>
-body {
-margin: 0;
-height: 100vh;
-display: flex;
-justify-content: center;
-align-items: center;
-background: #111;
-color: #fff;
-font-family: Arial, sans-serif;
-}
+    <meta charset="UTF-8">
+    <title>Custom Snake Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #111;
+            color: white;
+            text-align: center;
+        }
 
+        canvas {
+            background: #000;
+            border: 2px solid #444;
+            display: block;
+            margin: 20px auto;
+        }
 
-.container {
-text-align: center;
-}
+        .menu {
+            max-width: 400px;
+            margin: 40px auto;
+            background: #1c1c1c;
+            padding: 20px;
+            border-radius: 8px;
+        }
 
+        .menu label {
+            display: block;
+            margin: 10px 0;
+        }
 
-canvas {
-background: #000;
-border: 3px solid #fff;
-display: block;
-margin: 0 auto;
-}
-</style>
+        button {
+            padding: 8px 16px;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+
+        #countdown {
+            position: absolute;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 72px;
+            font-weight: bold;
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        #gameContainer {
+            position: relative;
+        }
+    </style>
 </head>
 <body>
-<div class="container">
-<h1>Snake</h1>
-<canvas id="game" width="400" height="400"></canvas>
-<p>Use arrow keys • Refresh to restart</p>
+
+<h1>Custom Snake Game</h1>
+
+<div class="menu" id="menu">
+    <h2>Game Settings</h2>
+
+    <label>
+        Snake Color:
+        <input type="color" id="snakeColor" value="#00ff00">
+    </label>
+
+    <label>
+        Speed:
+        <input type="range" id="speed" min="50" max="300" value="150">
+    </label>
+
+    <label>
+        Extra Food:
+        <input type="checkbox" id="multiFood">
+    </label>
+
+    <label>
+        Walls Enabled:
+        <input type="checkbox" id="walls" checked>
+    </label>
+
+    <button onclick="startGame()">Start Game</button>
 </div>
 
+<h2 id="score" style="display:none;">Score: 0</h2>
+
+<div id="gameContainer">
+    <canvas id="game" width="400" height="400"></canvas>
+    <div id="countdown">3</div>
+</div>
 
 <script src="script.js"></script>
 </body>
